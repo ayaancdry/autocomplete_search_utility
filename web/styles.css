@@ -1,0 +1,144 @@
+/* Full-Screen Video Background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.animated-text span {
+    opacity: 0;
+    display: inline-block;
+    animation: letterFade 0.5s forwards;
+}
+
+@keyframes letterFade {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.animated-text span:nth-child(n) {
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.search-container {
+    position: relative;
+    width: 50px;
+    transition: width 0.4s ease-in-out;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.search-expanded {
+    width: 600px;
+}
+
+.search-box {
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #3c3c3c !important;
+    color: whitesmoke;
+    padding: 8px 15px;
+    transition: all 0.3s ease-in-out;
+    display: none;
+    width: 100%;
+}
+
+.search-box:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: rgb(82, 82, 172);
+}
+
+.search-box::placeholder {
+    color: white !important;
+    opacity: 1;
+}
+
+.search-icon, .add-icon {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Styling for the added "Add" button in the add-container */
+.confirm-add-btn {
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #3c3c3c;
+    color: whitesmoke;
+    padding: 8px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Ensuring consistent text style */
+.animated-text {
+    font-family: 'Lato', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+}
+
+/* Dropdown Styling */
+#suggestions {
+    background-color: #f0f0f0;
+    width: 600px;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 3;
+    padding: 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* Styling for suggestions items */
+#suggestions li a {
+    color: #333;
+    padding: 8px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+#suggestions li a:hover {
+    background-color: #ddd;
+}
+
+/* Styling for keyboard-selected suggestion */
+#suggestions li.selected a {
+    background-color: #ddd;
+}
