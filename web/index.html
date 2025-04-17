@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <video autoplay muted loop id="bgVideo">
+        <source src="bgvideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <h1>Auto Search.</h1>
+        <div class="search-wrapper">
+            <input type="text" id="searchBox" placeholder="Start typing to search...">
+            <div id="suggestions"></div>
+            <!-- Search time will be shown here -->
+        </div>
+        <div class="add-word-wrapper">
+            <input type="text" id="newWord" placeholder="Add a new word to the dictionary" class="word-input">
+            <button id="addWordBtn" class="add-btn">Add Word</button>
+            <div id="addStatus" class="status-message"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
