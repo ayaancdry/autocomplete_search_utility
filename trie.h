@@ -11,10 +11,10 @@ using namespace std;
 //class TrieNode
 class TrieNode
 {
-public:// 3 part TrieNode structure
-unordered_map<char,TrieNode*> children; //unordered map consisting char and pointer to another TrieNode sturucture
-bool isEndofWord; // "true" if word ends
-int frequency; // no of occurences
+public:
+unordered_map<char,TrieNode*> children; 
+bool isEndofWord; 
+int frequency; 
 
 TrieNode(){//constructor
     isEndofWord=false;
@@ -24,13 +24,12 @@ TrieNode(){//constructor
 };
 
 //class suffixTrieNode
-class suffixTrieNode // 2 part suffixTrieNode structure
+class suffixTrieNode 
 {
-public:// 2 part suffixTrieNode structure
-unordered_map<char,suffixTrieNode*> children;//unorderd map consisting char and pointer to another suffixTrieNode sturucture
-bool isEndofWord;//"true" if word ends
-
-suffixTrieNode()//constructor
+public:
+unordered_map<char,suffixTrieNode*> children;
+bool isEndofWord;
+suffixTrieNode()
 {
     isEndofWord=false;
 }
@@ -43,41 +42,39 @@ class suffixTrie
 private:
     suffixTrieNode* root;
 
-    void insertSuffixes(const string& word){ //function of instersting each letter of the word in suffixTrieNode
-        for(int i=0 ;i<word.size();++i){  //traversing each letter
-            suffixTrieNode* current=root; //making the current pointer to root (first letter of the word is root)
-            for(int j=i;j<word.size();++j)//travrisng from i to end of word
+    void insertSuffixes(const string& word){ 
+        for(int i=0 ;i<word.size();++i){  
+            suffixTrieNode* current=root; 
+            for(int j=i;j<word.size();++j)
             {
-                if(current->children.find(word[j])==current->children.end()){ // checks if the letter is not already inserted in map
-                    current->children[word[j]]=new suffixTrieNode; // if new letter make a new node and points to that node
+                if(current->children.find(word[j])==current->children.end()){ 
+                    current->children[word[j]]=new suffixTrieNode; 
                 }
-                current=current->children[word[j]]; // moves the current pointer to the new node formed
+                current=current->children[word[j]]; 
             }
-            current->isEndofWord=true; // marks the end of the word (each suffix word formed by the every letter of the word is marked true)
-            // suffixtrie node consists word formed by every letter of the word
-
+            current->isEndofWord=true; 
 
         }
     }
 public:
-suffixTrie(){ // conatructor
-    root = new suffixTrieNode(); // forms a root of type suffixTrieNode ,assigns memory 
+suffixTrie(){ 
+    root = new suffixTrieNode(); 
 }
-    void buildsuffixTrie(const string& word){ // calls the function insertsuffixTrie ,builds the suffix trie
+    void buildsuffixTrie(const string& word){ 
         insertSuffixes(word);
     }
-    //for each word there is a trieNode and suffixTrieNode
+    
 
-    bool searchsuffix(const string& suffix)const { //search suffixes, if the word exists there would be a suffixTrieNode for each of its suffixes
-        suffixTrieNode* current =root; //set current node as root
-        for(int i=0;i<suffix.size();++i){ // traverse through each letter of the suffix 
-            if(current->children.find(suffix[i])==current->children.end()){//checks if the letter does not exist in the suffixTrieNode
-                return false;//if the letter does not exist then there would be no suffix ,returns false
+    bool searchsuffix(const string& suffix)const { 
+        suffixTrieNode* current =root; 
+        for(int i=0;i<suffix.size();++i){ 
+            if(current->children.find(suffix[i])==current->children.end()){
+                return false;
 
             }
-            current=current->children[suffix[i]];//if the letter exists,suffixTrieNode exists and the current moves to the next pointing to the suffixTrieNode
+            current=current->children[suffix[i]];
         }
-        return true;//if the entire suffix exists
+        return true;
     }   
 };
 
@@ -85,18 +82,17 @@ suffixTrie(){ // conatructor
 class Trie{
     private:
      TrieNode* root; 
-     unordered_map<string,suffixTrie> suffixTries; //unordered map of word and its entire suffixTrie(consisting of suffixTrieNode ,buildsuffixTrie,searchsuffixTrie)
-
-     void findPrefixMatches(TrieNode* node,string prefix,vector<pair<string,int> >& result) // find the all the words of a given prefix and store them in result
+     unordered_map<string,suffixTrie> suffixTries; 
+     void findPrefixMatches(TrieNode* node,string prefix,vector<pair<string,int> >& result)
      {
 
-        if(node->isEndofWord==true){ // if the word ends it stores in result
+        if(node->isEndofWord==true){ 
             result.emplace_back(prefix,node->frequency);
 
 
         }
-        for(auto child :node->children){ // for every character in current node
-            findPrefixMatches(child.second,prefix + child.first , result);// for every child moves deeper and add that character to prefix
+        for(auto child :node->children){ 
+            findPrefixMatches(child.second,prefix + child.first , result);
         }
         
      }
@@ -148,7 +144,7 @@ class Trie{
      }
 
      //Insert a word into Trie
-     void insert(const string& word ,int freq=1){ // default frequency is 1 
+     void insert(const string& word ,int freq=1){
         TrieNode* current = root;
         for(char ch : word){
             if(current->children.find(ch)==current->children.end()){
@@ -159,9 +155,9 @@ class Trie{
         current->isEndofWord=true;
         current->frequency+=freq;
 
-        suffixTrie suffixtrie; // suffixtrie object
-        suffixtrie.buildsuffixTrie(word); // build suffixtrie for the word
-        suffixTries[word] = suffixtrie;// store the suffix trie of the word in the map suffixTries
+        suffixTrie suffixtrie;
+        suffixtrie.buildsuffixTrie(word); 
+        suffixTries[word] = suffixtrie;
 
     
 
