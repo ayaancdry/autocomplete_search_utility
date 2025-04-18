@@ -17,17 +17,18 @@ A Trie (or prefix tree) stores keys by their character paths, guaranteeing O(m) 
 
 
 ## Project Structure
-
+```bash
 .
 ├── server.cpp          
-├── trie.h              
+├── trie.h             
 ├── web/
 │   ├── index.html      
 │   ├── styles.css      
 │   ├── script.js       
-│   └── dictionary.txt  
+│   └── dictionary.txt 
 └── README.md
 
+```
 - **`trie.h`**: Implements `Trie` and `SuffixTrie` with methods for inserting, searching, and retrieving matches.  
 - **`server.cpp`**: A minimal C++ HTTP server that handles requests for word suggestions and dictionary updates.  
 - **`dictionary.txt`**: A plain text word list used to populate the Trie on startup.  
