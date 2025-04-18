@@ -25,7 +25,8 @@ A Trie (or prefix tree) stores keys by their character paths, guaranteeing O(m) 
 │   ├── index.html      
 │   ├── styles.css      
 │   ├── script.js       
-│   └── dictionary.txt 
+│   └── dictionary.txt
+│   └── bgvideo.mp4  
 └── README.md
 
 ```
