@@ -162,6 +162,9 @@ flowchart TD
 1. [An Efficient Word Lookup System by using Improved Trie Algorithm](https://arxiv.org/pdf/1911.01763)
 2. [`bgvideo.mp4`](https://www.pexels.com/)
 
+## Demo Video
+The demo video for Smart Search can be accessed through this [link](https://www.youtube.com/watch?v=9UQ69zo99Ec)
+
 ## Team
 This project was completed as the course project for **CSL2020: Data Structures and Algorithms** during the Spring semester at the Indian Institute of Technology Jodhpur.  
 The team members were:  
