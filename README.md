@@ -19,6 +19,10 @@ A Trie (or prefix tree) stores keys by their character paths, guaranteeing O(m) 
 ## Project Structure
 ```bash
 .
+├── projectpage/ (this sub-directory is only used for deploying project page on github)
+│   ├── index.html      
+│   ├── styles.css
+│   ├── resources/     
 ├── server.cpp          
 ├── trie.h             
 ├── web/
